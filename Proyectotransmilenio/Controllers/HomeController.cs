@@ -22,7 +22,7 @@ namespace Proyectotransmilenio.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Desarrollado por";
+            ViewBag.Message = "Colaboradores";
 
             return View();
         }
