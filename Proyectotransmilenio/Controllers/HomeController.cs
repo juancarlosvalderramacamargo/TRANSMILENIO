@@ -15,14 +15,14 @@ namespace Proyectotransmilenio.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "TRANSMILENIO";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Desarrollado por";
 
             return View();
         }
