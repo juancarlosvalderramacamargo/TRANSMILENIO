@@ -6,7 +6,7 @@ using ExcelLibrary.SpreadSheet;
 using System.Text;
 using System.IO;
 
-namespace TesGestionProyectos.CargarArchivos
+namespace ProyectoTransmilenio.CargarArchivos
 {
     public class ValidadorInformacionCarroComprasNEC
     {

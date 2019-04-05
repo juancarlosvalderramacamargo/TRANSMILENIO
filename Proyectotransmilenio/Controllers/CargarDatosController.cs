@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProyectoTransmilenio.CargarArchivos;
+using Proyectotransmilenio.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,30 +17,30 @@ namespace Proyectotransmilenio.Controllers
         }
         public ActionResult Laicon()
         {
-            IdProyecto = variablesSession.obtenerIdProyecto();
-            List<TGProyectos_EquiposLaicon> equiposLaiconTesgestion = new List<TGProyectos_EquiposLaicon>();
-            List<EquiposLaicon> equiposLaiconVista = new List<EquiposLaicon>();
+            //IdProyecto = variablesSession.obtenerIdProyecto();
+            //List<TGProyectos_EquiposLaicon> equiposLaiconTesgestion = new List<TGProyectos_EquiposLaicon>();
+            //List<EquiposLaicon> equiposLaiconVista = new List<EquiposLaicon>();
             vistaEquiposLaicon vistaLaicon = new vistaEquiposLaicon();
-            vistaLaicon.listaTiposEquipo = ObtenerListaTiposLaicon("");
-            string tipo = vistaLaicon.listaTiposEquipo.FirstOrDefault().Text;
-            using (TesGestionProyectosEntities dbContex = new TesGestionProyectosEntities())
-            {
-                equiposLaiconTesgestion = dbContex.TGProyectos_EquiposLaicon.Where(x => x.ElementType == tipo).ToList();
-            }
-            foreach (TGProyectos_EquiposLaicon equipoLaiconTesgestion in equiposLaiconTesgestion)
-            {
-                EquiposLaicon equipoLaiconVista = new EquiposLaicon();
-                equipoLaiconVista.Id = equipoLaiconTesgestion.Id;
-                equipoLaiconVista.LaiconId = equipoLaiconTesgestion.LaiconId;
-                equipoLaiconVista.LocationCode = equipoLaiconTesgestion.LocationCode;
-                equipoLaiconVista.ModelDescription = equipoLaiconTesgestion.ModelDescription;
-                equipoLaiconVista.ModelIdPLU = equipoLaiconTesgestion.TGProyectos_Plu.Plu;
-                equipoLaiconVista.Serial = equipoLaiconTesgestion.SerialFabricante;
-                equipoLaiconVista.State = equipoLaiconTesgestion.State;
-                equipoLaiconVista.IdEstacion = equipoLaiconTesgestion.IdEstacion;
-                equiposLaiconVista.Add(equipoLaiconVista);
-            }
-            vistaLaicon.listaEquipos = equiposLaiconVista;
+            //vistaLaicon.listaTiposEquipo = ObtenerListaTiposLaicon("");
+            //string tipo = vistaLaicon.listaTiposEquipo.FirstOrDefault().Text;
+            //using (TesGestionProyectosEntities dbContex = new TesGestionProyectosEntities())
+            //{
+            //    equiposLaiconTesgestion = dbContex.TGProyectos_EquiposLaicon.Where(x => x.ElementType == tipo).ToList();
+            //}
+            //foreach (TGProyectos_EquiposLaicon equipoLaiconTesgestion in equiposLaiconTesgestion)
+            //{
+            //    EquiposLaicon equipoLaiconVista = new EquiposLaicon();
+            //    equipoLaiconVista.Id = equipoLaiconTesgestion.Id;
+            //    equipoLaiconVista.LaiconId = equipoLaiconTesgestion.LaiconId;
+            //    equipoLaiconVista.LocationCode = equipoLaiconTesgestion.LocationCode;
+            //    equipoLaiconVista.ModelDescription = equipoLaiconTesgestion.ModelDescription;
+            //    equipoLaiconVista.ModelIdPLU = equipoLaiconTesgestion.TGProyectos_Plu.Plu;
+            //    equipoLaiconVista.Serial = equipoLaiconTesgestion.SerialFabricante;
+            //    equipoLaiconVista.State = equipoLaiconTesgestion.State;
+            //    equipoLaiconVista.IdEstacion = equipoLaiconTesgestion.IdEstacion;
+            //    equiposLaiconVista.Add(equipoLaiconVista);
+            //}
+            //vistaLaicon.listaEquipos = equiposLaiconVista;
             return View(vistaLaicon);
         }
 
@@ -48,30 +50,30 @@ namespace Proyectotransmilenio.Controllers
         [HttpPost]
         public ActionResult Laicon(vistaEquiposLaicon model)
         {
-            List<TGProyectos_EquiposLaicon> equiposLaiconTesgestion = new List<TGProyectos_EquiposLaicon>();
-            List<EquiposLaicon> equiposLaiconVista = new List<EquiposLaicon>();
+            //List<TGProyectos_EquiposLaicon> equiposLaiconTesgestion = new List<TGProyectos_EquiposLaicon>();
+            //List<EquiposLaicon> equiposLaiconVista = new List<EquiposLaicon>();
             vistaEquiposLaicon vistaLaicon = new vistaEquiposLaicon();
             string tipo = model.Tipo;
-            vistaLaicon.listaTiposEquipo = ObtenerListaTiposLaicon(tipo);
-            using (TesGestionProyectosEntities dbContex = new TesGestionProyectosEntities())
-            {
-                equiposLaiconTesgestion = dbContex.TGProyectos_EquiposLaicon.Where(x => x.ElementType == tipo).ToList();
+            //vistaLaicon.listaTiposEquipo = ObtenerListaTiposLaicon(tipo);
+            //using (TesGestionProyectosEntities dbContex = new TesGestionProyectosEntities())
+            //{
+            //    equiposLaiconTesgestion = dbContex.TGProyectos_EquiposLaicon.Where(x => x.ElementType == tipo).ToList();
 
-                foreach (TGProyectos_EquiposLaicon equipoLaiconTesgestion in equiposLaiconTesgestion)
-                {
-                    EquiposLaicon equipoLaiconVista = new EquiposLaicon();
-                    equipoLaiconVista.Id = equipoLaiconTesgestion.Id;
-                    equipoLaiconVista.LaiconId = equipoLaiconTesgestion.LaiconId;
-                    equipoLaiconVista.LocationCode = equipoLaiconTesgestion.LocationCode;
-                    equipoLaiconVista.ModelDescription = equipoLaiconTesgestion.ModelDescription;
-                    equipoLaiconVista.ModelIdPLU = equipoLaiconTesgestion.TGProyectos_Plu.Plu;
-                    equipoLaiconVista.Serial = equipoLaiconTesgestion.SerialFabricante;
-                    equipoLaiconVista.State = equipoLaiconTesgestion.State;
-                    equipoLaiconVista.IdEstacion = equipoLaiconTesgestion.IdEstacion;
-                    equiposLaiconVista.Add(equipoLaiconVista);
-                }
-            }
-            vistaLaicon.listaEquipos = equiposLaiconVista;
+            //    foreach (TGProyectos_EquiposLaicon equipoLaiconTesgestion in equiposLaiconTesgestion)
+            //    {
+            //        EquiposLaicon equipoLaiconVista = new EquiposLaicon();
+            //        equipoLaiconVista.Id = equipoLaiconTesgestion.Id;
+            //        equipoLaiconVista.LaiconId = equipoLaiconTesgestion.LaiconId;
+            //        equipoLaiconVista.LocationCode = equipoLaiconTesgestion.LocationCode;
+            //        equipoLaiconVista.ModelDescription = equipoLaiconTesgestion.ModelDescription;
+            //        equipoLaiconVista.ModelIdPLU = equipoLaiconTesgestion.TGProyectos_Plu.Plu;
+            //        equipoLaiconVista.Serial = equipoLaiconTesgestion.SerialFabricante;
+            //        equipoLaiconVista.State = equipoLaiconTesgestion.State;
+            //        equipoLaiconVista.IdEstacion = equipoLaiconTesgestion.IdEstacion;
+            //        equiposLaiconVista.Add(equipoLaiconVista);
+            //    }
+            //}
+            //vistaLaicon.listaEquipos = equiposLaiconVista;
             return View(vistaLaicon);
         }
         public ActionResult cargarLaicon()
@@ -108,14 +110,14 @@ namespace Proyectotransmilenio.Controllers
                 System.IO.File.Delete(fileLocation);
                 mensaje = "El archivo " + Request.Files["file"].FileName + " se ha cargado correctamente";
                 TempData["Mensaje"] = mensaje;
-                variablesSession.guardarIdProyecto(IdProyecto);
+                //variablesSession.guardarIdProyecto(IdProyecto);
                 return RedirectToAction("Laicon", "Equipos");
             }
             else
             {
                 mensaje = "No se ha seleccionado ningun archivo valido";
                 TempData["Mensaje"] = mensaje;
-                variablesSession.guardarIdProyecto(IdProyecto);
+                //variablesSession.guardarIdProyecto(IdProyecto);
                 return RedirectToAction("Laicon", "Equipos");
             }
         }
