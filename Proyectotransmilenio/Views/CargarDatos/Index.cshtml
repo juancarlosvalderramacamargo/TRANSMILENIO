@@ -1,0 +1,44 @@
+﻿@model TesGestionProyectos.Models.ReporteCargaArchivoModelo
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header"> @ViewBag.Title</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-table fa-fw"></i> Información de la carga de archivos en la herramienta
+                </div>
+                <div class="panel-body">
+                    @if (@TempData.ContainsKey("Mensaje"))
+                    {
+                        <Script>
+                        alert('@(TempData["Mensaje"])');
+                        </Script>
+                    }
+                </div>
+               @Html.TextAreaFor(model => model.Reporte , htmlAttributes: new { @readonly = "readonly", rows = 15, cols = 150 })
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <a href="@Url.Action("Laicon", "Equipos")">
+                                Regresar a Laicon
+                            </a>
+                       </div>
+                        <div class="col-sm-6">
+                            <a href="@Url.Action("CarroComprasNEC", "Equipos")">
+                                Regresar a carro de compras NEC
+                            </a>
+                        </div>
+                   </div>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>

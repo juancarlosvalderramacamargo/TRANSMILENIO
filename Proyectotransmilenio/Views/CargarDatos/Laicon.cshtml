@@ -1,0 +1,183 @@
+﻿@model TesGestionProyectos.Models.vistaEquiposLaicon
+@{
+    ViewBag.Title = "Bodega";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">EQUIPOS EN BODEGA</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-table fa-fw"></i> Información de todos los equipos cargados en TESGEStion WEB mediante reporte LAICON
+                </div>
+                <div class="panel-body">
+                    @if (@TempData.ContainsKey("Mensaje"))
+                    {
+                        <Script>
+                        alert('@(TempData["Mensaje"])');
+                        </Script>
+                    }
+                    @using (Html.BeginForm("Laicon", "Equipos", FormMethod.Post, new { id = "TheForm" }))
+                    {
+
+                    <div class="form-inline col-md-3">
+                        <div class="form-group" style="align-items:initial">
+                            <label class="col-form-label">Tipo :</label>
+                            @Html.DropDownListFor(m => m.Tipo, Model.listaTiposEquipo, new { @class = "form-control mx-sm-3", @Id = "proySeleccionado", @onchange = "consultarTipoLaicon()" })
+                        </div>
+                    </div>
+                    }
+                    <table id="tablaEquipos" style="width:100%" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <strong>@Html.Label("Id Laicon")</strong>
+                                </th>
+                                <th>
+                                    <strong>@Html.Label("Model Id (PLU)")</strong>
+                                </th>
+                                <th>
+                                    <strong>@Html.Label("Model Description")</strong>                                    
+                                </th>
+                                <th>
+                                    <strong>@Html.Label("Serial")</strong>
+                                </th>
+                                <th>
+                                    <strong>@Html.Label("Location Code")</strong>
+                                </th>
+                                <th>
+                                    <strong>@Html.Label("State")</strong>
+                                </th>                               
+                                <th>
+                                    <strong>@Html.Label("Seleccionar")</strong>
+                                </th>                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.listaEquipos.Count() != 0)
+                            {
+                                foreach (TesGestionProyectos.Models.EquiposLaicon item in Model.listaEquipos)
+                                {
+                                    <tr >
+                                        <td>                                            
+                                            @Html.DisplayFor(modelItem => item.LaiconId)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ModelIdPLU)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ModelDescription)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Serial)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LocationCode)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.State)
+                                        </td>                 
+                                        <td>
+                                            @{if (!item.IdEstacion.HasValue)
+                                                {
+                                                @Html.CheckBoxFor(modelItem => item.Seleccionado, new { id = item.Id })
+                                                }
+                                             }
+                                        </td>                     
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="6">
+                                        <p>No se encontraron equipos.</p>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer">
+                    <button id="cargarLaicon" class="btn btn-primary" style=""><i class="fa fa-plus-circle" aria-hidden="true"></i> cargar equipos Laicon</button>
+                    <button id="AsignarEnlacesLaicon" class="btn btn-primary" style=""><i class="fa fa-plus-circle" aria-hidden="true"></i> Asignar Enlaces Laicon</button>
+                    <div class="pull-right">
+                        <a href="@Url.Action("CarroComprasNEC", "Equipos")"> siguiente <i class="fa fa-step-forward" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div id='myModalContent' class="panel panel-primary" style="margin-top:20px;margin-left:20px;margin-right:20px"></div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#tablaEquipos').DataTable({
+            responsive: true
+        });
+    });
+    $(document).ready(function () {
+        $("#cargarLaicon").click(function () {
+            $.get('/TesGestionProyectos/Equipos/cargarLaicon', function (data) {
+                $('#myModalContent').html(data);
+                $('#myModal').modal({});
+            });
+            $("#btnCerrarModal").click(function () {
+                $('#myModal').modal('hide');
+            });
+        });
+    });
+    $(document).ready(function () {
+        $("#AsignarEnlacesLaicon").click(function () {
+            var table = document.getElementById('tablaEquipos');
+            var seleccion = [];
+            $('input[type=checkbox]:checked',table).each(function () {
+                seleccion.push($(this).attr('id'));
+            });
+            var options = { "backdrop": "static", keyboard: true };
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("AsignarEnlaceLaicon", "Enlaces")',
+                data: { "seleccion": seleccion.toString() },
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    $('#myModalContent').html(data);
+                    $('#myModal').modal(options);
+                    $('#myModal').modal('show');
+                },
+                error: function () {
+                    alert("Error ");
+                }
+            });
+            $("#btnCerrarModal").click(function () {
+                $('#myModal').modal('hide');
+            });
+            $("#btnAsignar").click(function () {
+                $('#myModal').modal('hide');
+            });
+        });
+    });
+    function consultarTipoLaicon() {
+        empezarWaitDialog("Consultando equipos en bodega de TESGEStion WEB......Por favor espere");
+        document.getElementById("TheForm").submit();
+    }
+    function cargarArchivoLaicon() {
+        empezarWaitDialog("Cargando Archivo Laicon en TESGEStion WEB......Por favor espere");
+        document.getElementById("formulario").submit();
+    }
+</script>
+
