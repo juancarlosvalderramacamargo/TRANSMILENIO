@@ -156,6 +156,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="CargarArchivos\CargarCarroComprasNEC.cs" />
+    <Compile Include="CargarArchivos\CargarEquiposLaicon.cs" />
+    <Compile Include="CargarArchivos\EstructuraColumnasExcel.cs" />
+    <Compile Include="CargarArchivos\HerramientasLectorExcel.cs" />
+    <Compile Include="CargarArchivos\ItemEstructura.cs" />
+    <Compile Include="CargarArchivos\NombreTiposColumnas.cs" />
+    <Compile Include="CargarArchivos\ValidadorEstructuraCarroComprasNEC.cs" />
+    <Compile Include="CargarArchivos\ValidadorEstructuraLaicon.cs" />
+    <Compile Include="CargarArchivos\ValidadorInformacionCarroComprasNEC.cs" />
+    <Compile Include="CargarArchivos\ValidadorInformacionLaicon.cs" />
+    <Compile Include="Controllers\CargarDatosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -176,6 +187,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="INFORME PROYECTO TRANSMILENIO.doc" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -202,6 +214,15 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\CargarDatos\Cable.cshtml" />
+    <Content Include="Views\CargarDatos\cargarCarroComprasNEC.cshtml" />
+    <Content Include="Views\CargarDatos\cargarLaicon.cshtml" />
+    <Content Include="Views\CargarDatos\CarroComprasNEC.cshtml" />
+    <Content Include="Views\CargarDatos\Hibrido.cshtml" />
+    <Content Include="Views\CargarDatos\Idu.cshtml" />
+    <Content Include="Views\CargarDatos\Index.cshtml" />
+    <Content Include="Views\CargarDatos\Laicon.cshtml" />
+    <Content Include="Views\CargarDatos\Odu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
