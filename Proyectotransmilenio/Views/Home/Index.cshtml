@@ -1,22 +1,22 @@
 ﻿@{
     ViewBag.Title = "Pagina de Inicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>TRANSMILENIO</h1>
+    <p class="lead">Esta construida en ASP.NET.</p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Leer mas &raquo;</a></p>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h2>Modelo E-R Implementado</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            En esta opción puede ver el modelo E-R implementado en 
         </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <p><a class="btn btn-default" href="@Url.Action("ModeloER", "Home")" >Ver &raquo;</a></p>
+        <img src="@Url.Action("ModeloER", "Home")" alt="Image" /> 
     </div>
     <div class="col-md-4">
         <h2>Get more libraries</h2>
