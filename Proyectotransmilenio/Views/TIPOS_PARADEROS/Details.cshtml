@@ -1,0 +1,27 @@
+﻿@model Proyectotransmilenio.Models.TIPOS_PARADEROS
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>TIPO PARADERO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            TIPO PARADERO
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_PARADERO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID_TIPO_PAR }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Proyectotransmilenio.Models.PARADERO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Paradero", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            NOMBRE PARADERO
+        </th>
+        <th>
+            UBICACION PARADERO
+        </th>
+        <th>
+            POSICION VIA
+        </th>
+        <th>
+            TIPO PARADERO
+        </th>
+        <th>
+            NOMBRE VIA
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE_PARADERO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UBICACION_PARADERO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.POSICION_VIA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPOS_PARADEROS.TIPO_PARADERO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VIA.NOMBRE_VIA)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID_PARADERO }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ID_PARADERO }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID_PARADERO })
+        </td>
+    </tr>
+}
+
+</table>

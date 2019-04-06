@@ -1,0 +1,27 @@
+﻿@model Proyectotransmilenio.Models.VIA
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>VIA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            NOMBRE VÍA
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE_VIA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID_VIA }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

@@ -52,6 +52,9 @@ namespace Proyectotransmilenio.Controllers
         {
             if (ModelState.IsValid)
             {
+                decimal idBus = db.BUSES.Max(y => y.ID_BUS);
+                bus.ID_BUS = idBus + 1;
+
                 db.BUSES.Add(bus);
                 db.SaveChanges();
                 return RedirectToAction("Index");

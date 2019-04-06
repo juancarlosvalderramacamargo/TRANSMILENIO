@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyectotransmilenio", "Proyectotransmilenio\Proyectotransmilenio.csproj", "{6EEEF66B-8D20-4649-8265-B81B4CA27D0D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyectotransmilenio.Tests", "Proyectotransmilenio.Tests\Proyectotransmilenio.Tests.csproj", "{DF90E138-9F61-4DC1-A426-CC2656D7A6A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServiceTransmilenio", "WebServiceTransmilenio\WebServiceTransmilenio.csproj", "{DDC3E8B0-0552-46A5-BB98-C6E21318A83D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{DF90E138-9F61-4DC1-A426-CC2656D7A6A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF90E138-9F61-4DC1-A426-CC2656D7A6A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF90E138-9F61-4DC1-A426-CC2656D7A6A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDC3E8B0-0552-46A5-BB98-C6E21318A83D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDC3E8B0-0552-46A5-BB98-C6E21318A83D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDC3E8B0-0552-46A5-BB98-C6E21318A83D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDC3E8B0-0552-46A5-BB98-C6E21318A83D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ACE734CD-E7E9-4CC3-86BD-6A96D21D6638}
 	EndGlobalSection
 EndGlobal

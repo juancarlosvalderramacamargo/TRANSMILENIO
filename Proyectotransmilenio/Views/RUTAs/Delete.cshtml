@@ -1,0 +1,49 @@
+﻿@model Proyectotransmilenio.Models.RUTA
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Esta seguro que desea eliminar esta ruta?</h3>
+<div>
+    <h4>RUTA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            NOMBRE RUTA
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE_RUTA)
+        </dd>
+
+        <dt>
+            BUS MARCA
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bus.MARCA)
+        </dd>
+
+        <dt>
+            TIPO RUTA
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPOS_RUTAS.TIPO_RUTA)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>

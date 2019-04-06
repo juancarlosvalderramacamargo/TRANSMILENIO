@@ -1,0 +1,27 @@
+﻿@model Proyectotransmilenio.Models.TIPOS_RUTAS
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>TIPO RUTA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            TIPO RUTA
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_RUTA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID_TIPO_RUTA }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

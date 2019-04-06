@@ -1,0 +1,33 @@
+﻿@model Proyectotransmilenio.Models.TIPOS_RUTAS
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Esta seguro de eliminar este tipo de ruta?</h3>
+<div>
+    <h4>TIPO RUTA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            TIPO RUTA
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_RUTA)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>

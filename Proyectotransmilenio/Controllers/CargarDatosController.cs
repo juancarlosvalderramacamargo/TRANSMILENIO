@@ -17,30 +17,8 @@ namespace Proyectotransmilenio.Controllers
         }
         public ActionResult Laicon()
         {
-            //IdProyecto = variablesSession.obtenerIdProyecto();
-            //List<TGProyectos_EquiposLaicon> equiposLaiconTesgestion = new List<TGProyectos_EquiposLaicon>();
-            //List<EquiposLaicon> equiposLaiconVista = new List<EquiposLaicon>();
             vistaEquiposLaicon vistaLaicon = new vistaEquiposLaicon();
-            //vistaLaicon.listaTiposEquipo = ObtenerListaTiposLaicon("");
-            //string tipo = vistaLaicon.listaTiposEquipo.FirstOrDefault().Text;
-            //using (TesGestionProyectosEntities dbContex = new TesGestionProyectosEntities())
-            //{
-            //    equiposLaiconTesgestion = dbContex.TGProyectos_EquiposLaicon.Where(x => x.ElementType == tipo).ToList();
-            //}
-            //foreach (TGProyectos_EquiposLaicon equipoLaiconTesgestion in equiposLaiconTesgestion)
-            //{
-            //    EquiposLaicon equipoLaiconVista = new EquiposLaicon();
-            //    equipoLaiconVista.Id = equipoLaiconTesgestion.Id;
-            //    equipoLaiconVista.LaiconId = equipoLaiconTesgestion.LaiconId;
-            //    equipoLaiconVista.LocationCode = equipoLaiconTesgestion.LocationCode;
-            //    equipoLaiconVista.ModelDescription = equipoLaiconTesgestion.ModelDescription;
-            //    equipoLaiconVista.ModelIdPLU = equipoLaiconTesgestion.TGProyectos_Plu.Plu;
-            //    equipoLaiconVista.Serial = equipoLaiconTesgestion.SerialFabricante;
-            //    equipoLaiconVista.State = equipoLaiconTesgestion.State;
-            //    equipoLaiconVista.IdEstacion = equipoLaiconTesgestion.IdEstacion;
-            //    equiposLaiconVista.Add(equipoLaiconVista);
-            //}
-            //vistaLaicon.listaEquipos = equiposLaiconVista;
+
             return View(vistaLaicon);
         }
 
@@ -48,40 +26,7 @@ namespace Proyectotransmilenio.Controllers
         /// retorna vista de filtrado por proyecto 
         /// </summary>
         [HttpPost]
-        public ActionResult Laicon(vistaEquiposLaicon model)
-        {
-            //List<TGProyectos_EquiposLaicon> equiposLaiconTesgestion = new List<TGProyectos_EquiposLaicon>();
-            //List<EquiposLaicon> equiposLaiconVista = new List<EquiposLaicon>();
-            vistaEquiposLaicon vistaLaicon = new vistaEquiposLaicon();
-            string tipo = model.Tipo;
-            //vistaLaicon.listaTiposEquipo = ObtenerListaTiposLaicon(tipo);
-            //using (TesGestionProyectosEntities dbContex = new TesGestionProyectosEntities())
-            //{
-            //    equiposLaiconTesgestion = dbContex.TGProyectos_EquiposLaicon.Where(x => x.ElementType == tipo).ToList();
-
-            //    foreach (TGProyectos_EquiposLaicon equipoLaiconTesgestion in equiposLaiconTesgestion)
-            //    {
-            //        EquiposLaicon equipoLaiconVista = new EquiposLaicon();
-            //        equipoLaiconVista.Id = equipoLaiconTesgestion.Id;
-            //        equipoLaiconVista.LaiconId = equipoLaiconTesgestion.LaiconId;
-            //        equipoLaiconVista.LocationCode = equipoLaiconTesgestion.LocationCode;
-            //        equipoLaiconVista.ModelDescription = equipoLaiconTesgestion.ModelDescription;
-            //        equipoLaiconVista.ModelIdPLU = equipoLaiconTesgestion.TGProyectos_Plu.Plu;
-            //        equipoLaiconVista.Serial = equipoLaiconTesgestion.SerialFabricante;
-            //        equipoLaiconVista.State = equipoLaiconTesgestion.State;
-            //        equipoLaiconVista.IdEstacion = equipoLaiconTesgestion.IdEstacion;
-            //        equiposLaiconVista.Add(equipoLaiconVista);
-            //    }
-            //}
-            //vistaLaicon.listaEquipos = equiposLaiconVista;
-            return View(vistaLaicon);
-        }
-        public ActionResult cargarLaicon()
-        {
-            return PartialView("cargarLaicon");
-        }
-        [HttpPost]
-        public ActionResult cargarLaicon(HttpPostedFileBase file)
+        public ActionResult Laicon(HttpPostedFileBase file)
         {
             string mensaje = "";
             if (Request.Files["file"].ContentLength > 0)

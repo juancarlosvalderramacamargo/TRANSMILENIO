@@ -1,14 +1,14 @@
 ﻿<div>
     <div class="modal-header">
         <a href="#" class="close" data-dismiss="modal">&times;</a>
-        <h4>Agregar equipos en bodega con reporte LAICON</h4>
+        <h4>Agregar datos </h4>
     </div>
-    @using (Html.BeginForm("cargarLaicon", "Equipos", FormMethod.Post, new { enctype = "multipart/form-data", id = "formulario", name = "formulario" }))
+    @using (Html.BeginForm("cargarLaicon", "CargarDatos", FormMethod.Post, new { enctype = "multipart/form-data", id = "formulario", name = "formulario" }))
     {
         <div class="modal-body">
             <div class="panel-body">
                 @Html.AntiForgeryToken()
-                <p>seleccione el archivo excel que desea cargar en TESGEStion WEB</p>
+                <p>seleccione el archivo excel que desea cargar en TRANSMILENIO</p>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <input type="file" id="file" name="file" accept="application/vnd.ms-excel application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" style="width:70%" />

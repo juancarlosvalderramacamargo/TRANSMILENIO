@@ -1,0 +1,495 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="INFRAESTRUCTURA_TRANSMILENIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BUSES">
+          <Key>
+            <PropertyRef Name="ID_BUS" />
+          </Key>
+          <Property Name="ID_BUS" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO_BUS" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="MARCA" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MODELO" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CONDUTOR" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="COLOR" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BUSES_VIAS">
+          <Key>
+            <PropertyRef Name="ID_TIPO_BUS" />
+            <PropertyRef Name="ID_VIA" />
+          </Key>
+          <Property Name="ID_TIPO_BUS" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="ID_VIA" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PARADEROS">
+          <Key>
+            <PropertyRef Name="ID_PARADERO" />
+          </Key>
+          <Property Name="ID_PARADERO" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO_PAR" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="ID_VIA" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_PARADERO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UBICACION_PARADERO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="POSICION_VIA" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RUTAS">
+          <Key>
+            <PropertyRef Name="ID_RUTA" />
+          </Key>
+          <Property Name="ID_RUTA" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="ID_BUS" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO_RUTA" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_RUTA" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RUTAS_PARADEROS">
+          <Key>
+            <PropertyRef Name="ID_PARADERO" />
+            <PropertyRef Name="ID_RUTA" />
+          </Key>
+          <Property Name="ID_PARADERO" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="ID_RUTA" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="POSICION_RUTA" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TIPOS_BUSES">
+          <Key>
+            <PropertyRef Name="ID_TIPO_BUS" />
+          </Key>
+          <Property Name="ID_TIPO_BUS" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="TIPO_BUS" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TIPOS_PARADEROS">
+          <Key>
+            <PropertyRef Name="ID_TIPO_PAR" />
+          </Key>
+          <Property Name="ID_TIPO_PAR" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="TIPO_PARADERO" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TIPOS_RUTAS">
+          <Key>
+            <PropertyRef Name="ID_TIPO_RUTA" />
+          </Key>
+          <Property Name="ID_TIPO_RUTA" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="TIPO_RUTA" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VIAS">
+          <Key>
+            <PropertyRef Name="ID_VIA" />
+          </Key>
+          <Property Name="ID_VIA" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_VIA" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VIAS_RUTAS">
+          <Key>
+            <PropertyRef Name="ID_VIA" />
+            <PropertyRef Name="ID_RUTA" />
+          </Key>
+          <Property Name="ID_VIA" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="ID_RUTA" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="BUS_FK_IDTB">
+          <End Role="TIPOS_BUSES" Type="Self.TIPOS_BUSES" Multiplicity="1" />
+          <End Role="BUSES" Type="Self.BUSES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOS_BUSES">
+              <PropertyRef Name="ID_TIPO_BUS" />
+            </Principal>
+            <Dependent Role="BUSES">
+              <PropertyRef Name="ID_TIPO_BUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PAR_FK_IDTP">
+          <End Role="TIPOS_PARADEROS" Type="Self.TIPOS_PARADEROS" Multiplicity="1" />
+          <End Role="PARADEROS" Type="Self.PARADEROS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOS_PARADEROS">
+              <PropertyRef Name="ID_TIPO_PAR" />
+            </Principal>
+            <Dependent Role="PARADEROS">
+              <PropertyRef Name="ID_TIPO_PAR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PAR_FK_IDV">
+          <End Role="VIAS" Type="Self.VIAS" Multiplicity="1" />
+          <End Role="PARADEROS" Type="Self.PARADEROS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VIAS">
+              <PropertyRef Name="ID_VIA" />
+            </Principal>
+            <Dependent Role="PARADEROS">
+              <PropertyRef Name="ID_VIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RUT_FK_IDB">
+          <End Role="BUSES" Type="Self.BUSES" Multiplicity="1" />
+          <End Role="RUTAS" Type="Self.RUTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUSES">
+              <PropertyRef Name="ID_BUS" />
+            </Principal>
+            <Dependent Role="RUTAS">
+              <PropertyRef Name="ID_BUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RUT_FK_IDTR">
+          <End Role="TIPOS_RUTAS" Type="Self.TIPOS_RUTAS" Multiplicity="1" />
+          <End Role="RUTAS" Type="Self.RUTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOS_RUTAS">
+              <PropertyRef Name="ID_TIPO_RUTA" />
+            </Principal>
+            <Dependent Role="RUTAS">
+              <PropertyRef Name="ID_TIPO_RUTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="INFRAESTRUCTURA_TRANSMILENIOModelStoreContainer">
+          <EntitySet Name="BUSES" EntityType="Self.BUSES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BUSES_VIAS" EntityType="Self.BUSES_VIAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PARADEROS" EntityType="Self.PARADEROS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RUTAS" EntityType="Self.RUTAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RUTAS_PARADEROS" EntityType="Self.RUTAS_PARADEROS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPOS_BUSES" EntityType="Self.TIPOS_BUSES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPOS_PARADEROS" EntityType="Self.TIPOS_PARADEROS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPOS_RUTAS" EntityType="Self.TIPOS_RUTAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VIAS" EntityType="Self.VIAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VIAS_RUTAS" EntityType="Self.VIAS_RUTAS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="BUS_FK_IDTB" Association="Self.BUS_FK_IDTB">
+            <End Role="TIPOS_BUSES" EntitySet="TIPOS_BUSES" />
+            <End Role="BUSES" EntitySet="BUSES" />
+          </AssociationSet>
+          <AssociationSet Name="PAR_FK_IDTP" Association="Self.PAR_FK_IDTP">
+            <End Role="TIPOS_PARADEROS" EntitySet="TIPOS_PARADEROS" />
+            <End Role="PARADEROS" EntitySet="PARADEROS" />
+          </AssociationSet>
+          <AssociationSet Name="PAR_FK_IDV" Association="Self.PAR_FK_IDV">
+            <End Role="VIAS" EntitySet="VIAS" />
+            <End Role="PARADEROS" EntitySet="PARADEROS" />
+          </AssociationSet>
+          <AssociationSet Name="RUT_FK_IDB" Association="Self.RUT_FK_IDB">
+            <End Role="BUSES" EntitySet="BUSES" />
+            <End Role="RUTAS" EntitySet="RUTAS" />
+          </AssociationSet>
+          <AssociationSet Name="RUT_FK_IDTR" Association="Self.RUT_FK_IDTR">
+            <End Role="TIPOS_RUTAS" EntitySet="TIPOS_RUTAS" />
+            <End Role="RUTAS" EntitySet="RUTAS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="INFRAESTRUCTURA_TRANSMILENIOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BUSES">
+          <Key>
+            <PropertyRef Name="ID_BUS" />
+          </Key>
+          <Property Name="ID_BUS" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO_BUS" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="MARCA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MODELO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONDUTOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COLOR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TIPOS_BUSES" Relationship="Self.BUS_FK_IDTB" FromRole="BUSES" ToRole="TIPOS_BUSES" />
+          <NavigationProperty Name="RUTAS" Relationship="Self.RUT_FK_IDB" FromRole="BUSES" ToRole="RUTAS" />
+        </EntityType>
+        <EntityType Name="BUSES_VIAS">
+          <Key>
+            <PropertyRef Name="ID_TIPO_BUS" />
+            <PropertyRef Name="ID_VIA" />
+          </Key>
+          <Property Name="ID_TIPO_BUS" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="ID_VIA" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PARADEROS">
+          <Key>
+            <PropertyRef Name="ID_PARADERO" />
+          </Key>
+          <Property Name="ID_PARADERO" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO_PAR" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="ID_VIA" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_PARADERO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UBICACION_PARADERO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="POSICION_VIA" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <NavigationProperty Name="TIPOS_PARADEROS" Relationship="Self.PAR_FK_IDTP" FromRole="PARADEROS" ToRole="TIPOS_PARADEROS" />
+          <NavigationProperty Name="VIAS" Relationship="Self.PAR_FK_IDV" FromRole="PARADEROS" ToRole="VIAS" />
+        </EntityType>
+        <EntityType Name="RUTAS">
+          <Key>
+            <PropertyRef Name="ID_RUTA" />
+          </Key>
+          <Property Name="ID_RUTA" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="ID_BUS" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO_RUTA" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_RUTA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BUSES" Relationship="Self.RUT_FK_IDB" FromRole="RUTAS" ToRole="BUSES" />
+          <NavigationProperty Name="TIPOS_RUTAS" Relationship="Self.RUT_FK_IDTR" FromRole="RUTAS" ToRole="TIPOS_RUTAS" />
+        </EntityType>
+        <EntityType Name="RUTAS_PARADEROS">
+          <Key>
+            <PropertyRef Name="ID_PARADERO" />
+            <PropertyRef Name="ID_RUTA" />
+          </Key>
+          <Property Name="ID_PARADERO" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="ID_RUTA" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="POSICION_RUTA" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TIPOS_BUSES">
+          <Key>
+            <PropertyRef Name="ID_TIPO_BUS" />
+          </Key>
+          <Property Name="ID_TIPO_BUS" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="TIPO_BUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BUSES" Relationship="Self.BUS_FK_IDTB" FromRole="TIPOS_BUSES" ToRole="BUSES" />
+        </EntityType>
+        <EntityType Name="TIPOS_PARADEROS">
+          <Key>
+            <PropertyRef Name="ID_TIPO_PAR" />
+          </Key>
+          <Property Name="ID_TIPO_PAR" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="TIPO_PARADERO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PARADEROS" Relationship="Self.PAR_FK_IDTP" FromRole="TIPOS_PARADEROS" ToRole="PARADEROS" />
+        </EntityType>
+        <EntityType Name="TIPOS_RUTAS">
+          <Key>
+            <PropertyRef Name="ID_TIPO_RUTA" />
+          </Key>
+          <Property Name="ID_TIPO_RUTA" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="TIPO_RUTA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="RUTAS" Relationship="Self.RUT_FK_IDTR" FromRole="TIPOS_RUTAS" ToRole="RUTAS" />
+        </EntityType>
+        <EntityType Name="VIAS">
+          <Key>
+            <PropertyRef Name="ID_VIA" />
+          </Key>
+          <Property Name="ID_VIA" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_VIA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PARADEROS" Relationship="Self.PAR_FK_IDV" FromRole="VIAS" ToRole="PARADEROS" />
+        </EntityType>
+        <EntityType Name="VIAS_RUTAS">
+          <Key>
+            <PropertyRef Name="ID_VIA" />
+            <PropertyRef Name="ID_RUTA" />
+          </Key>
+          <Property Name="ID_VIA" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="ID_RUTA" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="BUS_FK_IDTB">
+          <End Role="TIPOS_BUSES" Type="Self.TIPOS_BUSES" Multiplicity="1" />
+          <End Role="BUSES" Type="Self.BUSES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOS_BUSES">
+              <PropertyRef Name="ID_TIPO_BUS" />
+            </Principal>
+            <Dependent Role="BUSES">
+              <PropertyRef Name="ID_TIPO_BUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RUT_FK_IDB">
+          <End Role="BUSES" Type="Self.BUSES" Multiplicity="1" />
+          <End Role="RUTAS" Type="Self.RUTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUSES">
+              <PropertyRef Name="ID_BUS" />
+            </Principal>
+            <Dependent Role="RUTAS">
+              <PropertyRef Name="ID_BUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PAR_FK_IDTP">
+          <End Role="TIPOS_PARADEROS" Type="Self.TIPOS_PARADEROS" Multiplicity="1" />
+          <End Role="PARADEROS" Type="Self.PARADEROS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOS_PARADEROS">
+              <PropertyRef Name="ID_TIPO_PAR" />
+            </Principal>
+            <Dependent Role="PARADEROS">
+              <PropertyRef Name="ID_TIPO_PAR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PAR_FK_IDV">
+          <End Role="VIAS" Type="Self.VIAS" Multiplicity="1" />
+          <End Role="PARADEROS" Type="Self.PARADEROS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VIAS">
+              <PropertyRef Name="ID_VIA" />
+            </Principal>
+            <Dependent Role="PARADEROS">
+              <PropertyRef Name="ID_VIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RUT_FK_IDTR">
+          <End Role="TIPOS_RUTAS" Type="Self.TIPOS_RUTAS" Multiplicity="1" />
+          <End Role="RUTAS" Type="Self.RUTAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOS_RUTAS">
+              <PropertyRef Name="ID_TIPO_RUTA" />
+            </Principal>
+            <Dependent Role="RUTAS">
+              <PropertyRef Name="ID_TIPO_RUTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="INFRAESTRUCTURA_TRANSMILENIOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BUSES" EntityType="Self.BUSES" />
+          <EntitySet Name="BUSES_VIAS" EntityType="Self.BUSES_VIAS" />
+          <EntitySet Name="PARADEROS" EntityType="Self.PARADEROS" />
+          <EntitySet Name="RUTAS" EntityType="Self.RUTAS" />
+          <EntitySet Name="RUTAS_PARADEROS" EntityType="Self.RUTAS_PARADEROS" />
+          <EntitySet Name="TIPOS_BUSES" EntityType="Self.TIPOS_BUSES" />
+          <EntitySet Name="TIPOS_PARADEROS" EntityType="Self.TIPOS_PARADEROS" />
+          <EntitySet Name="TIPOS_RUTAS" EntityType="Self.TIPOS_RUTAS" />
+          <EntitySet Name="VIAS" EntityType="Self.VIAS" />
+          <EntitySet Name="VIAS_RUTAS" EntityType="Self.VIAS_RUTAS" />
+          <AssociationSet Name="BUS_FK_IDTB" Association="Self.BUS_FK_IDTB">
+            <End Role="TIPOS_BUSES" EntitySet="TIPOS_BUSES" />
+            <End Role="BUSES" EntitySet="BUSES" />
+          </AssociationSet>
+          <AssociationSet Name="RUT_FK_IDB" Association="Self.RUT_FK_IDB">
+            <End Role="BUSES" EntitySet="BUSES" />
+            <End Role="RUTAS" EntitySet="RUTAS" />
+          </AssociationSet>
+          <AssociationSet Name="PAR_FK_IDTP" Association="Self.PAR_FK_IDTP">
+            <End Role="TIPOS_PARADEROS" EntitySet="TIPOS_PARADEROS" />
+            <End Role="PARADEROS" EntitySet="PARADEROS" />
+          </AssociationSet>
+          <AssociationSet Name="PAR_FK_IDV" Association="Self.PAR_FK_IDV">
+            <End Role="VIAS" EntitySet="VIAS" />
+            <End Role="PARADEROS" EntitySet="PARADEROS" />
+          </AssociationSet>
+          <AssociationSet Name="RUT_FK_IDTR" Association="Self.RUT_FK_IDTR">
+            <End Role="TIPOS_RUTAS" EntitySet="TIPOS_RUTAS" />
+            <End Role="RUTAS" EntitySet="RUTAS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="INFRAESTRUCTURA_TRANSMILENIOModelStoreContainer" CdmEntityContainer="INFRAESTRUCTURA_TRANSMILENIOEntities">
+          <EntitySetMapping Name="BUSES">
+            <EntityTypeMapping TypeName="INFRAESTRUCTURA_TRANSMILENIOModel.BUSES">
+              <MappingFragment StoreEntitySet="BUSES">
+                <ScalarProperty Name="ID_BUS" ColumnName="ID_BUS" />
+                <ScalarProperty Name="ID_TIPO_BUS" ColumnName="ID_TIPO_BUS" />
+                <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+                <ScalarProperty Name="MODELO" ColumnName="MODELO" />
+                <ScalarProperty Name="CONDUTOR" ColumnName="CONDUTOR" />
+                <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BUSES_VIAS">
+            <EntityTypeMapping TypeName="INFRAESTRUCTURA_TRANSMILENIOModel.BUSES_VIAS">
+              <MappingFragment StoreEntitySet="BUSES_VIAS">
+                <ScalarProperty Name="ID_TIPO_BUS" ColumnName="ID_TIPO_BUS" />
+                <ScalarProperty Name="ID_VIA" ColumnName="ID_VIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PARADEROS">
+            <EntityTypeMapping TypeName="INFRAESTRUCTURA_TRANSMILENIOModel.PARADEROS">
+              <MappingFragment StoreEntitySet="PARADEROS">
+                <ScalarProperty Name="ID_PARADERO" ColumnName="ID_PARADERO" />
+                <ScalarProperty Name="ID_TIPO_PAR" ColumnName="ID_TIPO_PAR" />
+                <ScalarProperty Name="ID_VIA" ColumnName="ID_VIA" />
+                <ScalarProperty Name="NOMBRE_PARADERO" ColumnName="NOMBRE_PARADERO" />
+                <ScalarProperty Name="UBICACION_PARADERO" ColumnName="UBICACION_PARADERO" />
+                <ScalarProperty Name="POSICION_VIA" ColumnName="POSICION_VIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RUTAS">
+            <EntityTypeMapping TypeName="INFRAESTRUCTURA_TRANSMILENIOModel.RUTAS">
+              <MappingFragment StoreEntitySet="RUTAS">
+                <ScalarProperty Name="ID_RUTA" ColumnName="ID_RUTA" />
+                <ScalarProperty Name="ID_BUS" ColumnName="ID_BUS" />
+                <ScalarProperty Name="ID_TIPO_RUTA" ColumnName="ID_TIPO_RUTA" />
+                <ScalarProperty Name="NOMBRE_RUTA" ColumnName="NOMBRE_RUTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RUTAS_PARADEROS">
+            <EntityTypeMapping TypeName="INFRAESTRUCTURA_TRANSMILENIOModel.RUTAS_PARADEROS">
+              <MappingFragment StoreEntitySet="RUTAS_PARADEROS">
+                <ScalarProperty Name="ID_PARADERO" ColumnName="ID_PARADERO" />
+                <ScalarProperty Name="ID_RUTA" ColumnName="ID_RUTA" />
+                <ScalarProperty Name="POSICION_RUTA" ColumnName="POSICION_RUTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPOS_BUSES">
+            <EntityTypeMapping TypeName="INFRAESTRUCTURA_TRANSMILENIOModel.TIPOS_BUSES">
+              <MappingFragment StoreEntitySet="TIPOS_BUSES">
+                <ScalarProperty Name="ID_TIPO_BUS" ColumnName="ID_TIPO_BUS" />
+                <ScalarProperty Name="TIPO_BUS" ColumnName="TIPO_BUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPOS_PARADEROS">
+            <EntityTypeMapping TypeName="INFRAESTRUCTURA_TRANSMILENIOModel.TIPOS_PARADEROS">
+              <MappingFragment StoreEntitySet="TIPOS_PARADEROS">
+                <ScalarProperty Name="ID_TIPO_PAR" ColumnName="ID_TIPO_PAR" />
+                <ScalarProperty Name="TIPO_PARADERO" ColumnName="TIPO_PARADERO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPOS_RUTAS">
+            <EntityTypeMapping TypeName="INFRAESTRUCTURA_TRANSMILENIOModel.TIPOS_RUTAS">
+              <MappingFragment StoreEntitySet="TIPOS_RUTAS">
+                <ScalarProperty Name="ID_TIPO_RUTA" ColumnName="ID_TIPO_RUTA" />
+                <ScalarProperty Name="TIPO_RUTA" ColumnName="TIPO_RUTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VIAS">
+            <EntityTypeMapping TypeName="INFRAESTRUCTURA_TRANSMILENIOModel.VIAS">
+              <MappingFragment StoreEntitySet="VIAS">
+                <ScalarProperty Name="ID_VIA" ColumnName="ID_VIA" />
+                <ScalarProperty Name="NOMBRE_VIA" ColumnName="NOMBRE_VIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VIAS_RUTAS">
+            <EntityTypeMapping TypeName="INFRAESTRUCTURA_TRANSMILENIOModel.VIAS_RUTAS">
+              <MappingFragment StoreEntitySet="VIAS_RUTAS">
+                <ScalarProperty Name="ID_VIA" ColumnName="ID_VIA" />
+                <ScalarProperty Name="ID_RUTA" ColumnName="ID_RUTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

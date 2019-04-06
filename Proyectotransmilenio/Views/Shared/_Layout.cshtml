@@ -1,12 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
     <style>
         .loader {
             position: fixed;
@@ -55,20 +56,20 @@
         $(document).ready(function () {
             $(".loader").fadeOut(3000);
         });
-        $(document).on({
-            ajaxStart: empezarWaitDialog("Procesando petición en TRANSMILENIO......Por favor espere"),
-            ajaxStop: terminarWaitDialog()
-        });
-        function empezarWaitDialog(mensajeDesplegar) {
-            if (mensajeDesplegar) {
-                document.getElementById('textoCargaInicial').innerText = mensajeDesplegar;
-            }
-            $(".loader").fadeIn("fast");
-        }
-        function terminarWaitDialog() {
-            $(".loader").fadeOut(3000);
-            document.getElementById('textoCargaInicial').innerText = "Cargando TRANSMILENIO......Por favor espere";
-        }
+        //$(document).on({
+        //    ajaxStart: empezarWaitDialog("Procesando petición en TRANSMILENIO......Por favor espere"),
+        //    ajaxStop: terminarWaitDialog()
+        //});
+        //function empezarWaitDialog(mensajeDesplegar) {
+        //    if (mensajeDesplegar) {
+        //        document.getElementById('textoCargaInicial').innerText = mensajeDesplegar;
+        //    }
+        //    $(".loader").fadeIn("fast");
+        //}
+        //function terminarWaitDialog() {
+        //    $(".loader").fadeOut(3000);
+        //    document.getElementById('textoCargaInicial').innerText = "Cargando TRANSMILENIO......Por favor espere";
+        //}
     </script>
 </body>
 </html>

@@ -214,8 +214,17 @@
     <Compile Include="CargarArchivos\ValidadorInformacionCarroComprasNEC.cs" />
     <Compile Include="CargarArchivos\ValidadorInformacionLaicon.cs" />
     <Compile Include="Controllers\BusesController.cs" />
+    <Compile Include="Controllers\BUSES_VIASController.cs" />
     <Compile Include="Controllers\CargarDatosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PARADEROesController.cs" />
+    <Compile Include="Controllers\RUTAsController.cs" />
+    <Compile Include="Controllers\RUTAS_PARADEROSController.cs" />
+    <Compile Include="Controllers\TIPOS_BUSESController.cs" />
+    <Compile Include="Controllers\TIPOS_PARADEROSController.cs" />
+    <Compile Include="Controllers\TIPOS_RUTASController.cs" />
+    <Compile Include="Controllers\VIAsController.cs" />
+    <Compile Include="Controllers\VIAS_RUTASController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -226,6 +235,7 @@
       <DependentUpon>TransmilenioModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EquiposModelos.cs" />
+    <Compile Include="Models\GenerarDatos.cs" />
     <Compile Include="Models\ModelosCargarArchivos.cs" />
     <Compile Include="Models\PARADERO.cs">
       <DependentUpon>TransmilenioModel.tt</DependentUpon>
@@ -302,6 +312,7 @@
     <Content Include="Models\TransmilenioModel.edmx.diagram">
       <DependentUpon>TransmilenioModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -328,20 +339,63 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\CargarDatos\Cable.cshtml" />
     <Content Include="Views\CargarDatos\cargarCarroComprasNEC.cshtml" />
     <Content Include="Views\CargarDatos\cargarLaicon.cshtml" />
     <Content Include="Views\CargarDatos\CarroComprasNEC.cshtml" />
     <Content Include="Views\CargarDatos\Hibrido.cshtml" />
-    <Content Include="Views\CargarDatos\Idu.cshtml" />
     <Content Include="Views\CargarDatos\Index.cshtml" />
     <Content Include="Views\CargarDatos\Laicon.cshtml" />
-    <Content Include="Views\CargarDatos\Odu.cshtml" />
     <Content Include="Views\Buses\Create.cshtml" />
     <Content Include="Views\Buses\Delete.cshtml" />
     <Content Include="Views\Buses\Details.cshtml" />
     <Content Include="Views\Buses\Edit.cshtml" />
     <Content Include="Views\Buses\Index.cshtml" />
+    <Content Include="Views\BUSES_VIAS\Create.cshtml" />
+    <Content Include="Views\BUSES_VIAS\Delete.cshtml" />
+    <Content Include="Views\BUSES_VIAS\Details.cshtml" />
+    <Content Include="Views\BUSES_VIAS\Edit.cshtml" />
+    <Content Include="Views\BUSES_VIAS\Index.cshtml" />
+    <Content Include="Views\VIAs\Create.cshtml" />
+    <Content Include="Views\VIAs\Delete.cshtml" />
+    <Content Include="Views\VIAs\Details.cshtml" />
+    <Content Include="Views\VIAs\Edit.cshtml" />
+    <Content Include="Views\VIAs\Index.cshtml" />
+    <Content Include="Views\TIPOS_BUSES\Create.cshtml" />
+    <Content Include="Views\TIPOS_BUSES\Delete.cshtml" />
+    <Content Include="Views\TIPOS_BUSES\Details.cshtml" />
+    <Content Include="Views\TIPOS_BUSES\Edit.cshtml" />
+    <Content Include="Views\TIPOS_BUSES\Index.cshtml" />
+    <Content Include="Views\TIPOS_RUTAS\Create.cshtml" />
+    <Content Include="Views\TIPOS_RUTAS\Delete.cshtml" />
+    <Content Include="Views\TIPOS_RUTAS\Details.cshtml" />
+    <Content Include="Views\TIPOS_RUTAS\Edit.cshtml" />
+    <Content Include="Views\TIPOS_RUTAS\Index.cshtml" />
+    <Content Include="Views\RUTAs\Create.cshtml" />
+    <Content Include="Views\RUTAs\Delete.cshtml" />
+    <Content Include="Views\RUTAs\Details.cshtml" />
+    <Content Include="Views\RUTAs\Edit.cshtml" />
+    <Content Include="Views\RUTAs\Index.cshtml" />
+    <Content Include="Views\VIAS_RUTAS\Create.cshtml" />
+    <Content Include="Views\VIAS_RUTAS\Delete.cshtml" />
+    <Content Include="Views\VIAS_RUTAS\Details.cshtml" />
+    <Content Include="Views\VIAS_RUTAS\Edit.cshtml" />
+    <Content Include="Views\VIAS_RUTAS\Index.cshtml" />
+    <Content Include="Views\TIPOS_PARADEROS\Create.cshtml" />
+    <Content Include="Views\TIPOS_PARADEROS\Delete.cshtml" />
+    <Content Include="Views\TIPOS_PARADEROS\Details.cshtml" />
+    <Content Include="Views\TIPOS_PARADEROS\Edit.cshtml" />
+    <Content Include="Views\TIPOS_PARADEROS\Index.cshtml" />
+    <Content Include="Views\PARADEROes\Create.cshtml" />
+    <Content Include="Views\PARADEROes\Delete.cshtml" />
+    <Content Include="Views\PARADEROes\Details.cshtml" />
+    <Content Include="Views\PARADEROes\Edit.cshtml" />
+    <Content Include="Views\PARADEROes\Index.cshtml" />
+    <Content Include="Views\RUTAS_PARADEROS\Create.cshtml" />
+    <Content Include="Views\RUTAS_PARADEROS\Delete.cshtml" />
+    <Content Include="Views\RUTAS_PARADEROS\Details.cshtml" />
+    <Content Include="Views\RUTAS_PARADEROS\Edit.cshtml" />
+    <Content Include="Views\RUTAS_PARADEROS\Index.cshtml" />
+    <Content Include="Views\Home\GenerarDatos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

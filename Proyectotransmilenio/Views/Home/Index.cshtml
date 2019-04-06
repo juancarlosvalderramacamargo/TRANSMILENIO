@@ -9,23 +9,77 @@
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Leer mas &raquo;</a></p>
 </div>
 
-<div class="row">
+@*<div class="row">
     <div class="col-md-4">
         <h2>Modelo E-R Implementado</h2>
         <p>
-            En esta opción puede ver el modelo E-R implementado en 
+            En esta opción puede ver el modelo E-R implementado en
         </p>
-        <p><a class="btn btn-default" href="@Url.Action("ModeloER", "Home")" >Ver &raquo;</a></p>
-        <img src="@Url.Action("ModeloER", "Home")" alt="Image" /> 
+        <p><a class="btn btn-default" href="@Url.Action("ModeloER", "Home")">Ver &raquo;</a></p>
+        <img src="@Url.Action("ModeloER", "Home")" alt="Image" />
     </div>
+</div>*@
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Generador de Datos</h2>
+        <p>
+            En esta opción permite ingresar datos a la Base de Datos
+        </p>
+        <p><a class="btn btn-default" href="@Url.Action("GenerarDatos", "Home")">Cargar Datos &raquo;</a></p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Cargar Datos</h2>
+        <p>
+            En esta opción se permite cargar datos a la Base de Datos desde un archivo Excel .xlsx
+        </p>
+        <p><a class="btn btn-default" href="@Url.Action("Laicon", "CargarDatos")">Generar Datos &raquo;</a></p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>TIPO BUS</h2>
+        <p>CRUD implementado para esta tabla</p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "TIPOS_BUSES")">Lista Tipos de Buses &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>TIPO RUTA</h2>
+        <p>CRUD implementado para esta tabla</p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "TIPOS_RUTAS")">Lista Tipos de Rutas &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>TIPO PARADERO</h2>
+        <p>CRUD implementado para esta tabla</p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "TIPOS_PARADEROS")">Lista Tipos de Paraderos &raquo;</a></p>
+    </div>
+</div>
+
+<div class="row">
     <div class="col-md-4">
         <h2>BUSES</h2>
         <p>CRUD implementado para esta tabla</p>
-        <p><a class="btn btn-default" href="@Url.Action("Index", "Buses")">Ir a "Buses" &raquo;</a></p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "Buses")">Lista Buses &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>PARADEROS</h2>
+        <p>CRUD implementado para esta tabla</p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "PARADEROes")">Lista Paraderos &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>RUTAS</h2>
+        <p>CRUD implementado para esta tabla</p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "RUTAs")">Lista Rutas &raquo;</a></p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>VIAS</h2>
+        <p>CRUD implementado para esta tabla</p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "VIAs")">Lista Vías &raquo;</a></p>
     </div>
 </div>

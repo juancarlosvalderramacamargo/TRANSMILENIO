@@ -8,7 +8,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Bus", "Create")
 </p>
 <table class="table">
     <tr>
@@ -19,13 +19,13 @@
             @Html.DisplayNameFor(model => model.MODELO)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CONDUTOR)
+            CONDUCTOR
         </th>
         <th>
             @Html.DisplayNameFor(model => model.COLOR)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TIPOS_BUSES.TIPO_BUS)
+            TIPO BUS
         </th>
         <th></th>
     </tr>
@@ -48,9 +48,9 @@
             @Html.DisplayFor(modelItem => item.TIPOS_BUSES.TIPO_BUS)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_BUS }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_BUS }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_BUS })
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID_BUS }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ID_BUS }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID_BUS })
         </td>
     </tr>
 }
