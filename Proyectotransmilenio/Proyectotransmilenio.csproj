@@ -9,7 +9,7 @@
     </ItemGroup>
     <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
     <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
-</Target>
+  </Target>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -32,6 +32,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -131,6 +132,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -210,14 +213,60 @@
     <Compile Include="CargarArchivos\ValidadorEstructuraLaicon.cs" />
     <Compile Include="CargarArchivos\ValidadorInformacionCarroComprasNEC.cs" />
     <Compile Include="CargarArchivos\ValidadorInformacionLaicon.cs" />
+    <Compile Include="Controllers\BusesController.cs" />
     <Compile Include="Controllers\CargarDatosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bus.cs">
+      <DependentUpon>TransmilenioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BUSES_VIAS.cs">
+      <DependentUpon>TransmilenioModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EquiposModelos.cs" />
     <Compile Include="Models\ModelosCargarArchivos.cs" />
+    <Compile Include="Models\PARADERO.cs">
+      <DependentUpon>TransmilenioModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ReporteCargaArchivoModelo.cs" />
+    <Compile Include="Models\RUTA.cs">
+      <DependentUpon>TransmilenioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RUTAS_PARADEROS.cs">
+      <DependentUpon>TransmilenioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TIPOS_BUSES.cs">
+      <DependentUpon>TransmilenioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TIPOS_PARADEROS.cs">
+      <DependentUpon>TransmilenioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TIPOS_RUTAS.cs">
+      <DependentUpon>TransmilenioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TransmilenioModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransmilenioModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TransmilenioModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransmilenioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TransmilenioModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransmilenioModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VIA.cs">
+      <DependentUpon>TransmilenioModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VIAS_RUTAS.cs">
+      <DependentUpon>TransmilenioModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +278,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\TransmilenioModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TransmilenioModel.edmx</DependentUpon>
+      <LastGenOutput>TransmilenioModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\TransmilenioModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TransmilenioModel.edmx</DependentUpon>
+      <LastGenOutput>TransmilenioModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -236,7 +295,13 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="INFORME PROYECTO TRANSMILENIO.doc" />
+    <EntityDeploy Include="Models\TransmilenioModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TransmilenioModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TransmilenioModel.edmx.diagram">
+      <DependentUpon>TransmilenioModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -272,6 +337,11 @@
     <Content Include="Views\CargarDatos\Index.cshtml" />
     <Content Include="Views\CargarDatos\Laicon.cshtml" />
     <Content Include="Views\CargarDatos\Odu.cshtml" />
+    <Content Include="Views\Buses\Create.cshtml" />
+    <Content Include="Views\Buses\Delete.cshtml" />
+    <Content Include="Views\Buses\Details.cshtml" />
+    <Content Include="Views\Buses\Edit.cshtml" />
+    <Content Include="Views\Buses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -286,6 +356,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

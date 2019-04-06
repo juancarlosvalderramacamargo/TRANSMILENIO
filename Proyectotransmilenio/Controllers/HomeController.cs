@@ -29,11 +29,12 @@ namespace Proyectotransmilenio.Controllers
 
         public ActionResult ModeloER()
         {
-            var path = Server.MapPath("Content/Images/") + "modelER.jpeg";
-            byte[] imageByteData = System.IO.File.ReadAllBytes(path);
-            string imageBase64Data = Convert.ToBase64String(imageByteData);
-            string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
-            return new FileContentResult(imageByteData, "image/jpeg");
+            //var path = Server.MapPath("Content/Images/") + "modelER.jpeg";
+            //byte[] imageByteData = System.IO.File.ReadAllBytes(path);
+            //string imageBase64Data = Convert.ToBase64String(imageByteData);
+            //string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
+            //return new FileContentResult(imageByteData, "image/jpeg");
+            return View();
         }
     }
 }
