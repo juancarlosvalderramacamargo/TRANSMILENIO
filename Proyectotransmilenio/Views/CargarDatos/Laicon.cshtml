@@ -6,41 +6,41 @@
 
 @using (Html.BeginForm("Laicon", "CargarDatos", FormMethod.Post, new { enctype = "multipart/form-data", id = "formulario", name = "formulario" }))
 {
-    <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Datos</h1>
+                <h1 class="page-header">Cargar Datos</h1>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <div class="panel panel-primary">
+                <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-table fa-fw"></i> Herramienta para cargar datos
+                         Herramienta para cargar datos
                     </div>
                     <div class="panel-body">
                         @if (@TempData.ContainsKey("Mensaje"))
                         {
                             <Script>
-                        alert('@(TempData["Mensaje"])');
+                                alert('@(TempData["Mensaje"])');
                             </Script>
                         }
-                    </div>
-
-                    <div class="row" style="padding-left:10px">
-                        <div class="col-md-4">
-                            <input type="file" id="file" name="file" />
+                        <div class="row" style="padding-left:10px">
+                            <div class="col-md-4">
+                                <input type="file" id="file" name="file" />
+                            </div>
+                        </div>
+                        <div class="row" style="padding:10px">
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-default">Cargar</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="row" style="padding:10px">
-                        <div class="col-md-4">
-                            <button type="submit" class="btn btn-default">Cargar</button>
-                        </div>
+                    <div class="panel-footer">
+                        *Archivo .xlsx obtenido en la opción "Generar"
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 }
     <script>
         $(document).ready(function () {

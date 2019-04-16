@@ -1,13 +1,11 @@
-﻿@{
-    ViewBag.Title = "Pagina de Inicio";
+﻿
+@{
+    ViewBag.Title = "Reportes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>TRANSMILENIO</h1>
-    <p class="lead">Esta es una  pagina web construida en ASP.NET.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Leer mas &raquo;</a></p>
-</div>
+<!DOCTYPE html>
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h2>Reportes BD</h2>
@@ -109,7 +107,6 @@
 
     </div>
 </div> 
-
 <script>
     var url = '@Url.Action("ObtenerNumeroInformacion","Home")';
     var Users;

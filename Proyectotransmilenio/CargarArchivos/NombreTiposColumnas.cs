@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ProyectoTransmilenio.CargarArchivos
+namespace Proyectotransmilenio.CargarArchivos
 {
     public class NombreTiposColumnas
     {

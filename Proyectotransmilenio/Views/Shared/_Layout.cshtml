@@ -17,70 +17,108 @@
             opacity: .8;
         }
     </style>
-    <script src="~/Scripts/alertify.min.js"></script>
-    <link href="~/Content/alertifyjs/themes/default.min.css" rel="stylesheet" />
-    <link href="~/Content/alertifyjs/alertify.min.css" rel="stylesheet" />
     @Styles.Render("~/template/css")
     @Scripts.Render("~/template/bootstrap")
     @Scripts.Render("~/bundles/jqueryval")
+    <link href="~/Content/FlujoProyecto.css" rel="stylesheet" />
     
 </head >
 <body >
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <div id="wrapper">
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <button type = "button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("TRANSMILENIO", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+            <ul class="navbar-top-links navbar-right">
+                <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+            </ul>
+        </div>
+        <div class="navbar-inverse sidebar" role="navigation" style="margin-top: 0">
+            <div class="bs-vertical-wizard sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="http://www.sitp.gov.co/ "><i class="fa fa-wordpress fa-fw" alt="Ir al sitio oficial de SITP"></i> SITP</a>
+                    </li>
+                    <li class="complete">
+                        <a href="@Url.Action("Reportes", "Home")">
+                            Reportes<i class="ico fa fa-bar-chart-o"></i>
+                            <span class="desc">Esta opción entrega reportes graficos de los datos en la Base de Datos</span>
+                        </a>
+                    </li>
+
+                    <li class="complete">
+                        <a href="@Url.Action("GenerarDatos", "Home")">
+                            Generar<i class="ico fa fa-cloud-download"></i>
+                            <span class="desc">Esta opción permite generar datos aleatorios en la Base de Datos</span>
+                        </a>
+                    </li>
+
+                    <li class="complete">
+                        <a href="@Url.Action("Laicon", "CargarDatos")">
+                            Cargar<i class="ico fa fa-cloud-upload"></i>
+                            <span class="desc">Esta opción permite cargar datos en la Base de Datos</span>
+                        </a>
+                    </li>
+
+                    <li class="complete">
+                        <a href="@Url.Action("IndexCRUD", "Home")">
+                            CRUD<i class="ico fa fa-cogs"></i>
+                            <span class="desc">Esta opción permite realizar las operaciones CRUD sobre las tablas de la Base de Datos</span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="@Url.Action("Index", "Buses")">BUS</a>
+                            </li>
+                            <li>
+                                <a href=@Url.Action("Index", "TIPOS_BUSES")>TIPO BUS</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "PARADEROes")">RUTAS</a>
+                            </li>
+                            <li>
+                                <a href=@Url.Action("Index", "TIPOS_RUTAS")>TIPO RUTAS</a>
+                            </li> 
+                            <li>
+                                <a href="@Url.Action("Index", "PARADEROes")">PARADEROS</a>
+                            </li>
+                            <li>
+                                <a href=@Url.Action("Index", "TIPOS_RUTAS")>TIPO PARADERO</a>
+                            </li> 
+                            <li>
+                                <a href=@Url.Action("Index", "VIAs")>VIAS</a>
+                            </li>                               
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li class="complete">
+                        <a href="#">
+                            WS<i class="ico fa-upload  "></i>
+                            <span class="desc">Esta opción permite cargar datos una Base de Datos a otra Base de Datos</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
+            <!-- /.sidebar-collapse -->
         </div>
-    </div>
-    <div class="navbar-inverse sidebar" role="navigation">
-        <div class="sidebar-nav navbar-collapse">
-            <ul class="nav" id="side-menu">
-                <li>
-                    <a href = "http://www.sitp.gov.co/ " ><i class="fa fa-wordpress fa-fw" alt="Ir al sitio oficial de SITP"></i> SITP</a>
-                </li>
-            </ul>
-            <ul class="nav nav-second-level" id="side-menu">
-                <li class="complete" id="Li_Enlaces">
-                    <a href = "@Url.Action("GenerarDatos", "Home")">
-                        Generador de Datos<i class="ico fa fa-cloud-download ico-green"></i>
-                        <span class="desc">Esta opción permite generar datos aleatorios en la Base de Datos</span>
-                    </a>
-                </li>
-
-                <li class="complete">
-                    <a href = "@Url.Action("Laicon", "CargarDatos")">
-                        Cargar Datos<i class="ico fa fa-cloud-upload ico-green"></i>
-                        <span class="desc">Esta opción permite cargar datos en la Base de Datos</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.sidebar-collapse -->
-    </div>
-    <div id="page-wrapper">
-        <div class="loader">
-            <div style="float:left; height:50%; width:100%; margin-bottom:-50px"></div>
-            <p id="textoCargaInicial" style="color:dodgerblue; text-align:center;clear:both;">Cargando Transmilenio......Por favor espere</p>
-        </div>
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - Proyecto TRANSMILENIO en ASP.NET</p>
-            </footer>
+        <div id="page-wrapper">
+            <div class="loader">
+                <div style="float:left; height:50%; width:100%; margin-bottom:-50px"></div>
+                <p id="textoCargaInicial" style="color:red; text-align:center;clear:both;">Iniciando Transmilenio......Por favor espere</p>
+            </div>
+            <div class="container body-content">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - Proyecto TRANSMILENIO en ASP.NET</p>
+                </footer>
+            </div>
         </div>
     </div>
         <script>

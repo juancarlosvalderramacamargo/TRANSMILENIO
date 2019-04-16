@@ -7,7 +7,7 @@ using System.Text;
 using System.IO;
 using Proyectotransmilenio.Models;
 
-namespace ProyectoTransmilenio.CargarArchivos
+namespace Proyectotransmilenio.CargarArchivos
 {
     public class CargarEquiposLaicon
     {

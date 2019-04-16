@@ -203,15 +203,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="CargarArchivos\CargarCarroComprasNEC.cs" />
     <Compile Include="CargarArchivos\CargarEquiposLaicon.cs" />
     <Compile Include="CargarArchivos\EstructuraColumnasExcel.cs" />
     <Compile Include="CargarArchivos\HerramientasLectorExcel.cs" />
     <Compile Include="CargarArchivos\ItemEstructura.cs" />
     <Compile Include="CargarArchivos\NombreTiposColumnas.cs" />
-    <Compile Include="CargarArchivos\ValidadorEstructuraCarroComprasNEC.cs" />
     <Compile Include="CargarArchivos\ValidadorEstructuraLaicon.cs" />
-    <Compile Include="CargarArchivos\ValidadorInformacionCarroComprasNEC.cs" />
     <Compile Include="CargarArchivos\ValidadorInformacionLaicon.cs" />
     <Compile Include="Controllers\BusesController.cs" />
     <Compile Include="Controllers\BUSES_VIASController.cs" />
@@ -282,6 +279,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\FlujoProyecto.css" />
     <Content Include="Content\Images\ajax-loader.gif" />
     <Content Include="Content\Images\modeloER.png" />
     <Content Include="Content\uploadify.css" />
@@ -342,10 +340,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\CargarDatos\cargarCarroComprasNEC.cshtml" />
     <Content Include="Views\CargarDatos\cargarLaicon.cshtml" />
-    <Content Include="Views\CargarDatos\CarroComprasNEC.cshtml" />
-    <Content Include="Views\CargarDatos\Hibrido.cshtml" />
     <Content Include="Views\CargarDatos\Index.cshtml" />
     <Content Include="Views\CargarDatos\Laicon.cshtml" />
     <Content Include="Views\Buses\Create.cshtml" />
@@ -399,6 +394,8 @@
     <Content Include="Views\RUTAS_PARADEROS\Edit.cshtml" />
     <Content Include="Views\RUTAS_PARADEROS\Index.cshtml" />
     <Content Include="Views\Home\GenerarDatos.cshtml" />
+    <Content Include="Views\Home\IndexCRUD.cshtml" />
+    <Content Include="Views\Home\Reportes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

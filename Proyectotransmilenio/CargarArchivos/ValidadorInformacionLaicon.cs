@@ -6,7 +6,7 @@ using ExcelLibrary.SpreadSheet;
 using System.Text;
 using System.IO;
 
-namespace ProyectoTransmilenio.CargarArchivos
+namespace Proyectotransmilenio.CargarArchivos
 {
     public class ValidadorInformacionLaicon
     {

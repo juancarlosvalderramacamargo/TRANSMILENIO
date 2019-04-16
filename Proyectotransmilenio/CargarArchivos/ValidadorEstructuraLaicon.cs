@@ -9,7 +9,7 @@ using ClosedXML.Excel;
 using LinqToExcel;
 using Proyectotransmilenio.Models;
 
-namespace ProyectoTransmilenio.CargarArchivos
+namespace Proyectotransmilenio.CargarArchivos
 {
     public class ValidadorEstructuraLaicon
     {        

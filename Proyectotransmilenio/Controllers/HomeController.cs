@@ -188,5 +188,32 @@ namespace Proyectotransmilenio.Controllers
 
             return RedirectToAction("GenerarDatos", "Home");
         }
+
+        public JsonResult ObtenerNumeroInformacion()
+        {
+            int rutas, buses, paraderos, tiposBus = 0;
+            INFRAESTRUCTURA_TRANSMILENIOEntities db = new INFRAESTRUCTURA_TRANSMILENIOEntities();
+            try
+            {
+                rutas = db.RUTAS.Count();
+                buses = db.BUSES.Count();
+                paraderos = db.PARADEROS.Count();
+                tiposBus = db.TIPOS_BUSES.Count();
+            }
+            catch
+            {
+
+            }
+            return Json(new { ruta = 1, bus = 2, paradero = 3, tipobus= tiposBus }, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult IndexCRUD()
+        {
+            return View();
+        }
+
+        public ActionResult Reportes()
+        {
+            return View();
+        }
     }
 }

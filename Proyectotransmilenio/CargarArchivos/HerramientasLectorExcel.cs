@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace ProyectoTransmilenio.CargarArchivos
+namespace Proyectotransmilenio.CargarArchivos
 {
     public class HerramientasLectorExcel
     {
