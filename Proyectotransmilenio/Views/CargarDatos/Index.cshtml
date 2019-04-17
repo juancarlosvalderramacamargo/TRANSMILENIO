@@ -24,7 +24,13 @@
                 </div>
                @Html.TextAreaFor(model => model.Reporte , htmlAttributes: new { @readonly = "readonly", rows = 15, cols = 150 })
                 <div class="panel-footer">
-                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <a href="@Url.Action("Laicon", "CargarDatos")">
+                                Intentar Cargar Archivo 
+                            </a>
+                        </div>
+                    </div>
                </div>
             </div>
         </div>

@@ -33,37 +33,43 @@ namespace Proyectotransmilenio.Controllers
             {
                 TempData.Remove("Mensaje");
                 string fileExtension = System.IO.Path.GetExtension(Request.Files["file"].FileName);
-
-                string fileLocation = Server.MapPath("~/Content/") + Request.Files["file"].FileName;
-                if (System.IO.File.Exists(fileLocation))
+                if (fileExtension.ToLowerInvariant() == ".xlsx" || fileExtension.ToLowerInvariant() == "xlsx")
                 {
+                    string fileLocation = Server.MapPath("~/Content/") + Request.Files["file"].FileName;
+                    if (System.IO.File.Exists(fileLocation))
+                    {
+                        System.IO.File.Delete(fileLocation);
+                    }
+                    Request.Files["file"].SaveAs(fileLocation);
+                    ReporteCargaArchivoModelo resultadoReporteLaicon = new ReporteCargaArchivoModelo();
+                    //----------Compara los nombres de las columnas del excel con el formato cargado en la herramienta
+                    ValidadorEstructuraVias leerLaicon = new ValidadorEstructuraVias();
+                    string resultadoEncabezados = leerLaicon.validarFormatoExcelVias(fileLocation);
+                    if (!string.IsNullOrWhiteSpace(resultadoEncabezados))
+                    {
+                        resultadoReporteLaicon.Reporte = resultadoEncabezados;
+                        System.IO.File.Delete(fileLocation);
+                        mensaje = "El archivo " + Request.Files["file"].FileName + "se termino de procesar";
+                        TempData["Mensaje"] = mensaje;
+                        return View("Index", resultadoReporteLaicon);
+                    }
                     System.IO.File.Delete(fileLocation);
-                }
-                Request.Files["file"].SaveAs(fileLocation);
-                ReporteCargaArchivoModelo resultadoReporteLaicon = new ReporteCargaArchivoModelo();
-                //----------Compara los nombres de las columnas del excel con el formato cargado en la herramienta
-                ValidadorEstructuraLaicon leerLaicon = new ValidadorEstructuraLaicon();
-                string resultadoEncabezados = leerLaicon.validarFormatoExcelLaicon(fileLocation);
-                if (!string.IsNullOrWhiteSpace(resultadoEncabezados))
-                {
-                    resultadoReporteLaicon.Reporte = resultadoEncabezados;
-                    System.IO.File.Delete(fileLocation);
-                    mensaje = "El archivo " + Request.Files["file"].FileName + "se termino de procesar";
+                    mensaje = "El archivo " + Request.Files["file"].FileName + " se ha cargado correctamente";
                     TempData["Mensaje"] = mensaje;
-                    return View("Index", resultadoReporteLaicon);
+                    return RedirectToAction("Index", "CargarDatos");
+               }
+                else
+                {
+                    mensaje = "No se ha seleccionado ningun archivo valido";
+                    TempData["Mensaje"] = mensaje;
+                    return RedirectToAction("Index", "CargarDatos");
                 }
-                System.IO.File.Delete(fileLocation);
-                mensaje = "El archivo " + Request.Files["file"].FileName + " se ha cargado correctamente";
-                TempData["Mensaje"] = mensaje;
-                //variablesSession.guardarIdProyecto(IdProyecto);
-                return RedirectToAction("Laicon", "Equipos");
             }
             else
             {
                 mensaje = "No se ha seleccionado ningun archivo valido";
                 TempData["Mensaje"] = mensaje;
-                //variablesSession.guardarIdProyecto(IdProyecto);
-                return RedirectToAction("Laicon", "Equipos");
+                return RedirectToAction("Index", "CargarDatos");
             }
         }        
     }

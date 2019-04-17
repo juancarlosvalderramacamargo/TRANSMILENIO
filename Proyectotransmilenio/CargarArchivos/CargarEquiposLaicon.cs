@@ -6,57 +6,97 @@ using ExcelLibrary.SpreadSheet;
 using System.Text;
 using System.IO;
 using Proyectotransmilenio.Models;
+using System.Data.Entity;
 
 namespace Proyectotransmilenio.CargarArchivos
 {
-    public class CargarEquiposLaicon
+    public class CargarVias
     {
-        //private IEnumerable<TGProyectos_EquiposLaicon> equiposLaiconTesgestion;
-        //private List<TGProyectos_EquiposLaicon> equipoLaiconNuevos = new List<TGProyectos_EquiposLaicon>();
-        public CargarEquiposLaicon()
+        private IEnumerable<VIA> equiposLaiconTesgestion;
+        private List<VIA> viasNuevas = new List<VIA>();
+        private INFRAESTRUCTURA_TRANSMILENIOEntities db = new INFRAESTRUCTURA_TRANSMILENIOEntities();
+        public CargarVias()
         {
-            //using (TesGestionProyectosEntities dbContex = new TesGestionProyectosEntities())
-            //{
-            //    equiposLaiconTesgestion = dbContex.TGProyectos_EquiposLaicon.ToList();
-            //}
+            using (INFRAESTRUCTURA_TRANSMILENIOEntities db = new INFRAESTRUCTURA_TRANSMILENIOEntities())
+            {
+                equiposLaiconTesgestion = db.VIAS.ToList();
+            }
         }
-        public string CargarEquiposLaiconBD(EstructuraColumnasExcel tabla)
+        public string CargarViasBD(EstructuraColumnasExcel tabla)
         {           
-            StringBuilder resultadoReporte = new StringBuilder();            
-            //foreach (List<ItemEstructura> item in tabla.TablaLaiconEstructura)
-            //{
-            //    TGProyectos_EquiposLaicon equipoLaicon = new TGProyectos_EquiposLaicon();                
-            //    equipoLaicon.LaiconId = (Int64)item[0].Elemento;
-            //    TGProyectos_EquiposLaicon equipoLaiconExistente = new TGProyectos_EquiposLaicon();
-            //    equipoLaiconExistente = equiposLaiconTesgestion.Where(x => x.LaiconId == equipoLaicon.LaiconId).FirstOrDefault();
-            //    if (equipoLaiconExistente != null)
-            //    {
-            //        resultadoReporte.AppendLine(string.Format("El equipo de la fila {0} ya existe en TESGEStion WEB", (item[0].RowIndex)));
-            //    }
-            //    else
-            //    {
-            //        equipoLaicon.Id = Guid.NewGuid();
-            //        equipoLaicon.LocationCode = (string)item[13].Elemento;
-            //        equipoLaicon.ModelDescription = (string)item[3].Elemento;
-            //        equipoLaicon.ModelIdPLU = (Int64)item[2].Elemento;
-            //        equipoLaicon.SerialFabricante = (string)item[17].Elemento;
-            //        equipoLaicon.State = (string)item[19].Elemento;
-            //        equipoLaicon.AssetType = (string)item[31].Elemento; ;
+            StringBuilder resultadoReporte = new StringBuilder();
+            foreach (List<ItemEstructura> item in tabla.TablaLaiconEstructura)
+            {
+                VIA viaExcel = new VIA();
+                viaExcel.NOMBRE_VIA = (String)item[0].Elemento;
+                VIA viaDB = new VIA();
+                viaDB = equiposLaiconTesgestion.Where(x => x.NOMBRE_VIA == viaExcel.NOMBRE_VIA).FirstOrDefault();
+                if (viaDB != null)
+                {
+                    resultadoReporte.AppendLine(string.Format("La via de la fila {0} ya existe en TRANSMILENIO", (item[0].RowIndex)));
+                }
+                else
+                {
+                    viaExcel.ID_VIA = db.VIAS.Max(x => x.ID_VIA) + 1m;
 
-            //        equipoLaiconNuevos.Add(equipoLaicon);
-            //        resultadoReporte.AppendLine(string.Format("El equipo de la fila {0} se creo en TESGEStion WEB", (item[0].RowIndex)));
-            //    }
+                    viasNuevas.Add(viaExcel);
+                    resultadoReporte.AppendLine(string.Format("La via de la fila {0} se creo en TRANSMILENIO", (item[0].RowIndex)));
+                }
 
-            //}
-            //using (TesGestionProyectosEntities dbContex = new TesGestionProyectosEntities())
-            //{
-            //    foreach (TGProyectos_EquiposLaicon equipoNuevo in equipoLaiconNuevos)
-            //    {
-            //        dbContex.TGProyectos_EquiposLaicon.Add(equipoNuevo);
-            //        dbContex.SaveChanges();                   
-            //    }
-            //}
-                return resultadoReporte.ToString();
+            }
+            using (INFRAESTRUCTURA_TRANSMILENIOEntities dbContex = new INFRAESTRUCTURA_TRANSMILENIOEntities())
+            {
+                foreach (VIA equipoNuevo in viasNuevas)
+                {
+                    dbContex.VIAS.Add(equipoNuevo);
+                    dbContex.SaveChanges();
+                }
+            }
+            return resultadoReporte.ToString();
         }
+
+        /// <summary>
+        /// Guarda en BD los equipos laicon cargados con linqtoexcel
+        /// </summary>
+        /// <param name="tabla">lista de equipos obtenidos del excel cargado</param>
+        /// <returns></returns>
+        public string CargarViasBDLinq(List<FilaVia> tabla, string NombreHoja)
+        {
+            StringBuilder resultadoReporte = new StringBuilder();
+            int fila = 0;   
+            foreach (FilaVia item in tabla)
+            {
+                fila++;
+
+                VIA viaExcel = new VIA();
+                viaExcel.NOMBRE_VIA = item.nombreVia;
+                VIA viaBD = new VIA();
+                viaBD = db.VIAS.Where(x => x.NOMBRE_VIA == viaExcel.NOMBRE_VIA).FirstOrDefault();
+                if (viaBD != null)
+                {
+                    resultadoReporte.AppendLine(string.Format("La via de la fila {0} ya existe en TRANSMILENIO", fila));
+                }
+                else
+                {
+                    viaExcel.ID_VIA = db.VIAS.Max(x=> x.ID_VIA)+1m;
+                    try
+                    {
+                        db.VIAS.Add(viaExcel);
+                        db.SaveChanges();
+                    }
+                    catch(Exception ex)
+                    {
+                    }                    
+                    viasNuevas.Add(viaExcel);
+                    resultadoReporte.AppendLine(string.Format("La via de la fila {0} se creo en TRANSMILENIO", fila));
+                }
+
+            }
+            resultadoReporte.AppendLine(string.Format("se obtuvieron {0} vias nuevas en la hoja {1}", viasNuevas.Count(), NombreHoja));
+            int equiposBD = tabla.Count() - viasNuevas.Count();
+            resultadoReporte.AppendLine(string.Format("la hoja {0} tiene {1} vias que ya estan en TRANSMILENIO ", NombreHoja, equiposBD));            
+            return resultadoReporte.ToString();
+        }
+
     }
 }
