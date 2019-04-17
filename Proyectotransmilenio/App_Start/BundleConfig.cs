@@ -30,6 +30,7 @@ namespace Proyectotransmilenio
             bundles.Add(new StyleBundle("~/template/css").Include(
                       "~/template/vendor/bootstrap/css/bootstrap.min.css",
                       "~/template/vendor/mentisMenu/metisMenu.min.css",
+                      "~/template/vendor/morrisjs/morris.css",
                       "~/template/vendor/datatables-plugins/dataTables.bootstrap.css",
                       "~/template/vendor/datatables-responsive/dataTables.responsive.css",
                       "~/template/dist/css/sb-admin-2.css",
@@ -41,7 +42,8 @@ namespace Proyectotransmilenio
                       "~/template/vendor/jquery/jquery.min.js",
                       "~/template/vendor/bootstrap/js/bootstrap.min.js",
                       "~/template/vendor/mentisMenu/metisMenu.min.js",
-                      "~/template/vendor/raphael/raphael.min.js",                                         
+                      "~/template/vendor/raphael/raphael.min.js",
+                      "~/template/vendor/morrisjs/morris.min.js",
                       "~/template/vendor/datatables/js/jquery.dataTables.min.js",
                       "~/template/vendor/datatables-plugins/dataTables.bootstrap.min.js",
                       "~/template/vendor/datatables-responsive/dataTables.responsive.js",

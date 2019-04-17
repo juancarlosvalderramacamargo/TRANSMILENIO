@@ -191,7 +191,7 @@ namespace Proyectotransmilenio.Controllers
 
         public JsonResult ObtenerNumeroInformacion()
         {
-            int rutas, buses, paraderos, tiposBus = 0;
+            int rutas=0, buses=0, paraderos=0, tiposBus = 0;
             INFRAESTRUCTURA_TRANSMILENIOEntities db = new INFRAESTRUCTURA_TRANSMILENIOEntities();
             try
             {
@@ -204,7 +204,7 @@ namespace Proyectotransmilenio.Controllers
             {
 
             }
-            return Json(new { ruta = 1, bus = 2, paradero = 3, tipobus= tiposBus }, JsonRequestBehavior.AllowGet);
+            return Json(new { ruta = rutas, bus = buses, paradero = paraderos, tipobus= tiposBus }, JsonRequestBehavior.AllowGet);
         }
         public ActionResult IndexCRUD()
         {
@@ -214,6 +214,26 @@ namespace Proyectotransmilenio.Controllers
         public ActionResult Reportes()
         {
             return View();
+        }
+        public JsonResult ObtenerNumeroBusesTipo()
+        {
+            int Articulados = 0, Biarticulados = 0, Alimentadores = 0, Buses = 0, Busetones=0, Busetas=0, Microbuses=0;
+            INFRAESTRUCTURA_TRANSMILENIOEntities db = new INFRAESTRUCTURA_TRANSMILENIOEntities();
+            try
+            {
+                Articulados = db.BUSES.Where(x => x.ID_TIPO_BUS == 1).Count();
+                Biarticulados = db.BUSES.Where(x => x.ID_TIPO_BUS == 2).Count();
+                Alimentadores = db.BUSES.Where(x => x.ID_TIPO_BUS == 3).Count();
+                Buses = db.BUSES.Where(x => x.ID_TIPO_BUS == 4).Count();
+                Busetones = db.BUSES.Where(x => x.ID_TIPO_BUS == 5).Count();
+                Busetas = db.BUSES.Where(x => x.ID_TIPO_BUS == 6).Count();
+                Microbuses = db.BUSES.Where(x => x.ID_TIPO_BUS == 7).Count();
+            }
+            catch
+            {
+
+            }
+            return Json(new { art = Articulados, biart = Biarticulados, alim = Alimentadores, bus = Buses, buseto=Busetones, buseta=Busetas, micro=Microbuses }, JsonRequestBehavior.AllowGet);
         }
     }
 }

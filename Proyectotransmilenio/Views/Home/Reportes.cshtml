@@ -5,13 +5,13 @@
 }
 
 <!DOCTYPE html>
-
+<link href="~/template/vendor/morrisjs/morris.css" rel="stylesheet">
+<h2>Reportes desde BD</h2>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h2>Reportes BD</h2>
+        <h2>Información Básica BD</h2>
     </div>
     <div class="panel-body">
-        <p>Información obtenida desde la base de datos de la aplicación</p>
         <div class="row">
             <div class="col-lg-3 col-md-6">
                 <div class="panel panel-primary">
@@ -107,10 +107,22 @@
 
     </div>
 </div> 
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2>Cantidad de Buses por Tipo de Bus</h2>
+    </div>
+    <div class="panel-body">
+        <div id="morris-donut-chart"></div>
+    </div>
+    <div class="panel-footer">
+        Morris.js is a jQuery based charting plugin created by Olly Smith. In SB Admin, we are using the most recent version of Morris.js which includes the resize function, which makes the charts fully responsive. The documentation for Morris.js is available on their website, http://morrisjs.github.io/morris.js/.
+    </div>
+</div>
+
+<script src="~/template/vendor/morrisjs/morris.min.js"></script>
 <script>
     var url = '@Url.Action("ObtenerNumeroInformacion","Home")';
     var Users;
-    debugger
     $.ajax({
         url: url,
         type: 'get',
@@ -119,10 +131,49 @@
         async: false,
         success: function (data) {
             document.getElementById('rutas').innerText = data.ruta;
-            debugger
             document.getElementById('buses').innerText = data.bus;
-            document.getElementById('tipobus').innerText = data.paradero;
-            document.getElementById('paraderos').innerText = data.tipobus;
+            document.getElementById('tipobus').innerText = data.tipobus;
+            document.getElementById('paraderos').innerText = data.paradero
         }
+    });
+    var datosGrafica;
+    var url = '@Url.Action("ObtenerNumeroBusesTipo", "Home")';
+    $.ajax({
+        url: url,
+        type: 'get',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: false,
+        success: function (data) {
+            datosGrafica = [{
+                label: "Articulado",
+                value: data.art
+            }, {
+                label: "Biarticulado",
+                value: data.biart
+            }, {
+                label: "Bus",
+                value: data.bus
+            }, {
+                label: "Busetón",
+                value: data.buseto
+            }, {
+                label: "Buseta",
+                value: data.buseta
+            }, {
+                label: "Microbus",
+                value: data.micro
+            }, {
+                label: "Alimentador",
+                value: data.alim
+            }];
+        }
+    });
+    $(function () {
+        Morris.Donut({
+            element: 'morris-donut-chart',
+            data : datosGrafica,            
+            resize: true
+        });
     });
 </script>

@@ -5,54 +5,64 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Listado Paraderos</h2>
 
 <p>
     @Html.ActionLink("Crear Nuevo Paradero", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            NOMBRE PARADERO
-        </th>
-        <th>
-            UBICACION PARADERO
-        </th>
-        <th>
-            POSICION VIA
-        </th>
-        <th>
-            TIPO PARADERO
-        </th>
-        <th>
-            NOMBRE VIA
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBRE_PARADERO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UBICACION_PARADERO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.POSICION_VIA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TIPOS_PARADEROS.TIPO_PARADERO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VIA.NOMBRE_VIA)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.ID_PARADERO }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.ID_PARADERO }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID_PARADERO })
-        </td>
-    </tr>
-}
-
+<table id="tabla" style="width:100%" class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                NOMBRE PARADERO
+            </th>
+            <th>
+                UBICACION PARADERO
+            </th>
+            <th>
+                POSICION VIA
+            </th>
+            <th>
+                TIPO PARADERO
+            </th>
+            <th>
+                NOMBRE VIA
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NOMBRE_PARADERO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UBICACION_PARADERO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.POSICION_VIA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TIPOS_PARADEROS.TIPO_PARADERO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VIA.NOMBRE_VIA)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.ID_PARADERO }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.ID_PARADERO }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.ID_PARADERO })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+<script>
+    $(document).ready(function () {
+        $('#tabla').DataTable({
+            responsive: true
+        });
+    });
+</script>
