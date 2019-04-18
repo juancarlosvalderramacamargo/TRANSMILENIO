@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TRANSMILENIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'TRANSMILENIO.dbo.TRANSMILENIO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="TRANSMILENIO">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="NOMBRE_VIA" />
+            <PropertyRef Name="TIPO_BUS" />
+            <PropertyRef Name="MARCA" />
+            <PropertyRef Name="MODELO" />
+            <PropertyRef Name="CONDUTOR" />
+            <PropertyRef Name="COLOR" />
+            <PropertyRef Name="TIPO_RUTA" />
+            <PropertyRef Name="NOMBRE_RUTA" />
+            <PropertyRef Name="TIPO_PARADERO" />
+            <PropertyRef Name="NOMBRE_PARADERO" />
+            <PropertyRef Name="UBICACION_PARADERO" />
+            <PropertyRef Name="POSICION_VIA" />
+            <PropertyRef Name="POSICION_RUTA" />
+          </Key>
+          <Property Name="ID" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_VIA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TIPO_BUS" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MARCA" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MODELO" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CONDUTOR" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="COLOR" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TIPO_RUTA" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="NOMBRE_RUTA" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TIPO_PARADERO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NOMBRE_PARADERO" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UBICACION_PARADERO" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="POSICION_VIA" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="POSICION_RUTA" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TRANSMILENIOModelStoreContainer">
+          <EntitySet Name="TRANSMILENIO" EntityType="Self.TRANSMILENIO" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TRANSMILENIO].[ID] AS [ID], 
+    [TRANSMILENIO].[NOMBRE_VIA] AS [NOMBRE_VIA], 
+    [TRANSMILENIO].[TIPO_BUS] AS [TIPO_BUS], 
+    [TRANSMILENIO].[MARCA] AS [MARCA], 
+    [TRANSMILENIO].[MODELO] AS [MODELO], 
+    [TRANSMILENIO].[CONDUTOR] AS [CONDUTOR], 
+    [TRANSMILENIO].[COLOR] AS [COLOR], 
+    [TRANSMILENIO].[TIPO_RUTA] AS [TIPO_RUTA], 
+    [TRANSMILENIO].[NOMBRE_RUTA] AS [NOMBRE_RUTA], 
+    [TRANSMILENIO].[TIPO_PARADERO] AS [TIPO_PARADERO], 
+    [TRANSMILENIO].[NOMBRE_PARADERO] AS [NOMBRE_PARADERO], 
+    [TRANSMILENIO].[UBICACION_PARADERO] AS [UBICACION_PARADERO], 
+    [TRANSMILENIO].[POSICION_VIA] AS [POSICION_VIA], 
+    [TRANSMILENIO].[POSICION_RUTA] AS [POSICION_RUTA]
+    FROM [dbo].[TRANSMILENIO] AS [TRANSMILENIO]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TRANSMILENIOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TRANSMILENIO">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="NOMBRE_VIA" />
+            <PropertyRef Name="TIPO_BUS" />
+            <PropertyRef Name="MARCA" />
+            <PropertyRef Name="MODELO" />
+            <PropertyRef Name="CONDUTOR" />
+            <PropertyRef Name="COLOR" />
+            <PropertyRef Name="TIPO_RUTA" />
+            <PropertyRef Name="NOMBRE_RUTA" />
+            <PropertyRef Name="TIPO_PARADERO" />
+            <PropertyRef Name="NOMBRE_PARADERO" />
+            <PropertyRef Name="UBICACION_PARADERO" />
+            <PropertyRef Name="POSICION_VIA" />
+            <PropertyRef Name="POSICION_RUTA" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_VIA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPO_BUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MARCA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MODELO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONDUTOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COLOR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPO_RUTA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE_RUTA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPO_PARADERO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE_PARADERO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UBICACION_PARADERO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="POSICION_VIA" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="POSICION_RUTA" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TRANSMILENIOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TRANSMILENIO" EntityType="Self.TRANSMILENIO" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TRANSMILENIOModelStoreContainer" CdmEntityContainer="TRANSMILENIOEntities">
+          <EntitySetMapping Name="TRANSMILENIO">
+            <EntityTypeMapping TypeName="TRANSMILENIOModel.TRANSMILENIO">
+              <MappingFragment StoreEntitySet="TRANSMILENIO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NOMBRE_VIA" ColumnName="NOMBRE_VIA" />
+                <ScalarProperty Name="TIPO_BUS" ColumnName="TIPO_BUS" />
+                <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+                <ScalarProperty Name="MODELO" ColumnName="MODELO" />
+                <ScalarProperty Name="CONDUTOR" ColumnName="CONDUTOR" />
+                <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+                <ScalarProperty Name="TIPO_RUTA" ColumnName="TIPO_RUTA" />
+                <ScalarProperty Name="NOMBRE_RUTA" ColumnName="NOMBRE_RUTA" />
+                <ScalarProperty Name="TIPO_PARADERO" ColumnName="TIPO_PARADERO" />
+                <ScalarProperty Name="NOMBRE_PARADERO" ColumnName="NOMBRE_PARADERO" />
+                <ScalarProperty Name="UBICACION_PARADERO" ColumnName="UBICACION_PARADERO" />
+                <ScalarProperty Name="POSICION_VIA" ColumnName="POSICION_VIA" />
+                <ScalarProperty Name="POSICION_RUTA" ColumnName="POSICION_RUTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

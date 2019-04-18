@@ -235,5 +235,10 @@ namespace Proyectotransmilenio.Controllers
             }
             return Json(new { art = Articulados, biart = Biarticulados, alim = Alimentadores, bus = Buses, buseto=Busetones, buseta=Busetas, micro=Microbuses }, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult WS ()
+        {
+            return View();
+        }
     }
 }

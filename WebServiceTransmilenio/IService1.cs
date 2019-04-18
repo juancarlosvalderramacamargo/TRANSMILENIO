@@ -19,6 +19,8 @@ namespace WebServiceTransmilenio
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
+        [OperationContract]
+        string SincronizarBD();
         // TODO: agregue aquí sus operaciones de servicio
     }
 

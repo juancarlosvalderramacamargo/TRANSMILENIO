@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "WS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Web Service</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+
+        <div class="form-group">
+            URL del Web Service con la cual puede acceder a los procesos del mismo
+            http://192.168.6.101:8670/Service1.svc?wsdl
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>

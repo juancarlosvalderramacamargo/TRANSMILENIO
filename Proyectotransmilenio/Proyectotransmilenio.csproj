@@ -396,6 +396,7 @@
     <Content Include="Views\Home\GenerarDatos.cshtml" />
     <Content Include="Views\Home\IndexCRUD.cshtml" />
     <Content Include="Views\Home\Reportes.cshtml" />
+    <Content Include="Views\Home\WS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
